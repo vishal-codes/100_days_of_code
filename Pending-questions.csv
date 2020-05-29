@@ -1,3 +1,4 @@
-Questions Name,Status
-Kth Smallest In array,pending
-No of subsequence whose sum is in between th given range,pending
+Questions Name,Status,Link,Comments
+Kth Smallest In array,pending,,Solve without using sorting
+No of subsequence whose sum is in between th given range,pending,,
+Count Bits,pending,https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/537/week-4-may-22nd-may-28th/3343/,Solve without using set bits
