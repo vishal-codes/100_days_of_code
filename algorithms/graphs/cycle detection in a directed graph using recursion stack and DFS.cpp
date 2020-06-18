@@ -60,3 +60,12 @@ bool isCyclePresent(vector<vector<int>> &graph,int Vertices)
 	}
 	return false;
 }
+
+/*
+
+Complexity Analysis:
+	Time Complexity: O(V+E).
+		Time Complexity of this method is same as time complexity of DFS traversal which is O(V+E).
+	Space Complexity: O(V).
+		To store the visited and recursion stack O(V) space is needed.
+*/
