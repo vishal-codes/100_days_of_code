@@ -11,11 +11,9 @@ int findMinVertex(vector<int>& weights,vector<bool>& visited, int n){
             minVertex = i;
         }
     }
-    return minVertex;=
+    return minVertex;
 }
 
-!=-1)
-     {
 void Dijkistra(int** g, int n){
 
     //
@@ -32,7 +30,7 @@ void Dijkistra(int** g, int n){
      distance[source]=0;
 
      int cv = 0;
-     while(cv
+     while(cv !=-1){
         visited[cv]=true;
         for(int i=0;i<n;i++)
         {
