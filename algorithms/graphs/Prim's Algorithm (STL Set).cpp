@@ -1,4 +1,6 @@
-
+/* Prim's Algorithm finds the minimum spannig tree f a graph. The graph must be connected.
+The main idea behind the Prim's algorihtm is that , Prim's Algorithm selects the minimum weight connected
+edge at a time , untill n-1 edges are found */
 #include<bits/stdc++.h>
 using namespace std;
 #define INF INT_MAX
@@ -32,13 +34,22 @@ void prims(vector<pair<int,int>> g[], int n){
         // Explore un visted neighbours
         for(int i = 0; i < g[u].size(); i++){
 
-            if(visited[g[u][i].first]==false and g[u][i].second<weights[g[u][i].first])
+            int v = g[u][i].first;
+            int d = g[u][i].second; // distance between u and v
+            if(visited[v]==false and d<weights[v])
             {
-                if(weights[g[u][i].first]!=INF)
-                s.erase({weights[g[u][i].first],g[u][i].first}); 
-                weights[g[u][i].first]=g[u][i].second;
-                parent[g[u][i].first]=u;
-                s.insert({weights[g[u][i].first],g[u][i].first});
+                // delete the previous entry from the set
+                if(weights[v]!=INF)
+                s.erase({weights[v],v}); 
+
+                // Update the weights
+                weights[v]=g[u][i].second;
+
+                // update the parents
+                parent[v]=u;
+
+                // insert the new weight into the set
+                s.insert({weights[v],v});
 
             }
         }
@@ -54,9 +65,11 @@ void prims(vector<pair<int,int>> g[], int n){
 }
 
 int main() {
-     vector<pair<int,int>> g[200005];
+
+    vector<pair<int,int>> g[200005];
     int n,e;
     cin>>n>>e;
+    
     for(int i=0;i<e;i++)
     {
         int x,y,w;
@@ -71,5 +84,8 @@ int main() {
     return 0;
 }
 
-
+/*
+Time Complexity : O(Elog(V))
+Space Complexity : O(E+V)
+*/
 
