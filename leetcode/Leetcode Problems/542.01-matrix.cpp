@@ -63,8 +63,68 @@
 // @lc code=start
 class Solution {
 public:
-    vector<vector<int>> updateMatrix(vector<vector<int>>& matrix) {
-        
+    int helper(int i,int j,vector<vector<int>>& mat,vector<vector<int>>& v)
+    {
+        // cout<<i<<" "<<j<<endl;
+       
+        if(v[i][j]!=-1)
+        {
+            return v[i][j];
+        }
+        int n = mat.size();
+        int m = mat[0].size();
+        int mn = 100000;
+        v[i][j]=mn;
+        if(i+1<n and v[i+1][j]<=0)
+        {
+            mn = min(mn,helper(i+1,j,mat,v));
+        }
+        if(j+1<m and v[i][j+1]<=0)
+        {
+            mn = min(mn,helper(i,j+1,mat,v));
+        }
+        if(i-1>=0 and v[i-1][j]<=0)
+        {
+            mn = min(mn,helper(i-1,j,mat,v));
+
+        }
+        if(j-1>=0 and v[i][j-1]>=0)
+        {
+            mn = min(mn,helper(i,j-1,mat,v));
+
+        }
+        v[i][j]=mn+1;
+        return mn;
+    }
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
+        vector<vector<int>> v = mat;
+        int n = mat.size();
+        int m = mat[0].size();
+
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(mat[i][j]==1)
+                v[i][j]=-1;
+                else 
+                v[i][j]=0;
+            }
+        }
+
+
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(v[i][j]==-1 )
+                {
+                  v[i][j] =  helper(i,j,mat,v);
+                }
+            }
+        }
+
+        return v;
     }
 };
 // @lc code=end
