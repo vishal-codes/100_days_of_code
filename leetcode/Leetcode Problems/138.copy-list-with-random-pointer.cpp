@@ -90,30 +90,44 @@ public:
 class Solution {
 public:
     Node* copyRandomList(Node* head) {
-        Node* t = head;
+        
+        if(head==NULL)
+            return NULL;
+        unordered_map<Node*,int> m;
+        vector<Node*> v;
+
+
+        Node* c1 = head;
+        m[c1]=0;
+
+        Node* c2 = new Node(head->val);
+        Node* head2 = c2;
+        
+        
+        c1 = c1->next;
+        v.push_back(c2);
+        int i =1;
+        
+        while(c1!=NULL)
+        {
+            m[c1]=i;
+            c2->next = new Node(c1->val);
+            c2=c2->next;
+            v.push_back(c2);
+            i++;
+            c1=c1->next;
+        }
+        c2=head2;
         while(head!=NULL)
         {
-        cout<<head-t<<" "<<head->val<<" ";
-        cout<<head->random<<endl;;
-        head=head->next;
-        }
-       /* vector<Node*> v;
-        Node* c = head;
-        Node* p = NULL;
-
-        while(c!=NULL)
-        {
-            Node* newNode = new Node(head->val);
-            v.push_back(newNode);
-            if(p!=NULL)
+            if(head->random!=NULL)
             {
-                p->next = newNode;
+                head2->random=v[m[head->random]];
             }
-            p=newNode;
-            c=c->next;
-        } 
-        */
-        return NULL; 
+            head2=head2->next;
+            head = head->next;
+        }
+        return c2;
     }
 };
 // @lc code=end
