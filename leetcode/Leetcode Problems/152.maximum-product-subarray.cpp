@@ -40,13 +40,20 @@ public:
     int maxProduct(vector<int>& a) {
         
         int n = a.size();
-        vector<ll> dp(n);
+        vector<ll> dp(n),dp2(n);
         dp[n-1]=a[n-1];
         ll mx = a[n-1];
         for(int i=n-2;i>=0;i--)
         {
             dp[i]=max((ll)a[i],dp[i+1] * (ll)a[i]);
             mx = max(mx,dp[i]);
+        }
+        dp[0]=a[0];
+
+        for(int i=1;i<n;i++)
+        {
+            dp[i]=max((ll)a[i],dp[i-1]*(ll)a[i]);
+            mx=max(mx,dp[i]);
         }
         return mx;
     }
